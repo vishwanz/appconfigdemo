@@ -358,7 +358,7 @@ function showSlides(n, no) {
 <!-- api call to populate cribs --> -->
      <script>
         const searchParams = new URLSearchParams(window.location.search);
-        const qsParam = "";
+        var qsParam = "";
         if(searchParams.has('viewingAs')){
             qsParam = searchParams.get('viewingAs')
         } else{
