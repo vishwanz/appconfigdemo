@@ -360,7 +360,8 @@ function showSlides(n, no) {
         fetch('https://ki47az1b1e.execute-api.ap-south-1.amazonaws.com/Dev')
         .then(response => response.text())
         .then((data) => {
-            document.getElementById("populateCribsHere").innerHTML=data;
+            var dataOBj = JSON.parse(data);
+            document.getElementById("populateCribsHere").innerHTML=dataOBj.body;
             setUI();
   });
 </script>
