@@ -357,7 +357,17 @@ function showSlides(n, no) {
 
 <!-- api call to populate cribs --> -->
      <script>
-        fetch('https://ki47az1b1e.execute-api.ap-south-1.amazonaws.com/Dev')
+        const searchParams = new URLSearchParams(window.location.search);
+        const qsParam = "";
+        if(searchParams.has('viewingAs')){
+            qsParam = "viewingAs=" + searchParams.get('viewingAs')
+        } else{
+            qsParam = "viewingAs=customers" 
+        } true
+
+        const queryParams = new URLSearchParams({ viewingAs: viewingAs }).toString();
+
+        fetch('https://ki47az1b1e.execute-api.ap-south-1.amazonaws.com/Dev?'+ qsParam)
         .then(response => response.text())
         .then((data) => {
             var dataOBj = JSON.parse(data);
