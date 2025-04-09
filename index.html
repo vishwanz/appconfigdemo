@@ -359,13 +359,13 @@ function showSlides(n, no) {
      <script>
         const searchParams = new URLSearchParams(window.location.search);
         var qsParam = "";
-        if(searchParams.has('viewingAs')){
-            qsParam = searchParams.get('viewingAs')
+        if(searchParams.has('tier')){
+            qsParam = searchParams.get('tier')
         } else{
-            qsParam = "customers" 
+            qsParam = "premium" 
         }     
 
-        fetch('https://ki47az1b1e.execute-api.ap-south-1.amazonaws.com/Dev?viewingAs='+ qsParam)
+        fetch('https://ki47az1b1e.execute-api.ap-south-1.amazonaws.com/Dev?tier='+ qsParam)
         .then(response => response.text())
         .then((data) => {
             var dataOBj = JSON.parse(data);
