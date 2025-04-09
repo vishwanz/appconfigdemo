@@ -202,7 +202,7 @@
                         <li class="nav-item">
                             <a class="nav-link">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><span
-                                        style="color: #232f3e;">Viewing As: </span><span id="whodisrole">Customers</span></span>
+                                        style="color: #232f3e;">Viewing As: </span><span id="whodisrole"></span></span>
                             </a>
                         </li>
 
@@ -360,18 +360,20 @@ function showSlides(n, no) {
         const searchParams = new URLSearchParams(window.location.search);
         const qsParam = "";
         if(searchParams.has('viewingAs')){
-            qsParam = "viewingAs=" + searchParams.get('viewingAs')
+            qsParam = searchParams.get('viewingAs')
         } else{
-            qsParam = "viewingAs=customers" 
+            qsParam = "customers" 
         } true
 
         const queryParams = new URLSearchParams({ viewingAs: viewingAs }).toString();
 
-        fetch('https://ki47az1b1e.execute-api.ap-south-1.amazonaws.com/Dev?'+ qsParam)
+        fetch('https://ki47az1b1e.execute-api.ap-south-1.amazonaws.com/Dev?viewingAs='+ qsParam)
         .then(response => response.text())
         .then((data) => {
             var dataOBj = JSON.parse(data);
             document.getElementById("populateCribsHere").innerHTML=dataOBj.body;
+            document.getElementById("whodisrole").innerText=qsParam;
+            
             setUI();
   });
 </script>
