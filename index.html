@@ -362,7 +362,7 @@ function showSlides(n, no) {
         if(searchParams.has('tier')){
             qsParam = searchParams.get('tier')
         } else{
-            qsParam = "premium" 
+            qsParam = "basic" 
         }     
 
         fetch('https://ki47az1b1e.execute-api.ap-south-1.amazonaws.com/Dev?tier='+ qsParam)
