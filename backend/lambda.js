@@ -7,9 +7,9 @@ const docClient = DynamoDBDocumentClient.from(client);
 
 export const handler = async (event) => {
   console.log("Entering the function...");
-  const viewingAs = event["viewingAs"].toString();
-  if(!viewingAs || viewingAs == "undefined") {
-    viewingAs = "customer";
+  const tier = event["tier"].toString();
+  if(!tier || tier == "undefined") {
+    tier = "basic";
   }
 
   const res = await new Promise((resolve, reject) => {
@@ -50,7 +50,7 @@ export const handler = async (event) => {
   var showCarouselEnabled = false;
   var enabledFor = parsedConfigData.showcarousel["enabledFor"] ? parsedConfigData.showcarousel["enabledFor"].toString(): "";
 
-  if (parsedConfigData.showcarousel.enabled == true && enabledFor == viewingAs) {
+  if (parsedConfigData.showcarousel.enabled == true && enabledFor == tier) {
     showCarouselEnabled = true;
   }
   
