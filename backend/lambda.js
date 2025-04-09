@@ -8,6 +8,9 @@ const docClient = DynamoDBDocumentClient.from(client);
 export const handler = async (event) => {
   console.log("Entering the function...");
   const viewingAs = event["viewingAs"].toString();
+  if(!viewingAs || viewingAs == "undefined") {
+    viewingAs = "customer";
+  }
 
   const res = await new Promise((resolve, reject) => {
     http.get(
@@ -45,7 +48,7 @@ export const handler = async (event) => {
   //Checking for the Caraousel Feature Flag
   console.log("Is carousel enabled?" + parsedConfigData.showcarousel.enabled);
   var showCarouselEnabled = false;
-  var enabledFor = parsedConfigData.showcarousel["enabledFor"].toString();
+  var enabledFor = parsedConfigData.showcarousel["enabledFor"] ? parsedConfigData.showcarousel["enabledFor"].toString(): "";
 
   if (parsedConfigData.showcarousel.enabled == true && enabledFor == viewingAs) {
     showCarouselEnabled = true;
